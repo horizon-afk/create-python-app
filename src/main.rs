@@ -1,16 +1,30 @@
-use std::env;
-use std::fs;
-use clap::arg;
-use clap::command;
-use clap::{Command};
+use std::{fs, env};
+use std::path::Path;
+use std::process::Command;
+use clap::{command, Parser};
 
+
+
+#[derive(Parser)]
+#[command(version,about)]
+struct  Interface {
+    
+    /// Flask app layout with a basic flask app files with a app.py and templates
+    #[arg(long, default_value_t = false)]
+    flask: bool,
+
+    /// Name of the file
+    directory: String
+}
 
 
 fn main() {
-    let generate = command!()
-    .arg(arg!(--dirname <DIRECTORY> "Name of the project"))
-    .get_matches();
 
+    let interface : Interface = Interface::parse();
+
+    let dir_name = interface.directory;
+    fs::create_dir(dir_name.clone()).expect("Invalid filename");
+    fs::File::create_new(dir_name.clone()+ "/app.py").expect("File already exists");
 
     
 }
