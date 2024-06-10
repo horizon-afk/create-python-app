@@ -1,0 +1,9 @@
+[package]
+name = "create-python-app"
+version = "0.1.0"
+edition = "2021"
+authors = ["Umesh Kumar Sarkar <umeshsarkar19@outlook.com>"]
+description = "Generates a folder for Python with .venv virtual environment and git"
+
+[dependencies]
+clap = { version = "4.5.*", features = ["cargo"] }
