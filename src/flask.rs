@@ -9,7 +9,7 @@ pub fn create_flask_env() {
     os::mkdir(String::from("static"));
 
     // content for base.html
-    let content = indoc! {"
+    let mut content = indoc! {"
             <!DOCTYPE html>
             <html lang=\"en\">
             <head>
@@ -29,5 +29,27 @@ pub fn create_flask_env() {
     os::cwd(String::from("templates"));
 
     let mut html_file = mkfile(String::from("base.html"));
-    html_file.write_all(content.as_bytes());
+    html_file
+        .write_all(content.as_bytes())
+        .expect("Error. File not wriiten");
+
+    content = indoc! {"
+        {% extends 'base.html' %}
+
+        {% block head %}
+        <title>My Flask app</title>
+        {% endblock %}
+
+
+        {% block body %}
+    
+
+        {% endblock %}
+        "
+    };
+
+    html_file = mkfile(String::from("index.html"));
+    html_file
+        .write_all(content.as_bytes())
+        .expect("Error. File not written");
 }
