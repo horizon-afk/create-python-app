@@ -1,5 +1,5 @@
 use clap::{command, Parser};
-use std::process::Command;
+use std::{io::Write, process::Command};
 
 mod flask;
 mod os;
@@ -35,6 +35,12 @@ fn main() {
     venv.args(["-m", "virtualenv", ".venv"])
         .spawn()
         .expect("Could not create venv. Download virtualenv and try again.");
+
+    // creating app.py
+    let mut py_file = os::mkfile(String::from("app.py"));
+    py_file
+        .write_all("print (\"Hello World\")".as_bytes())
+        .expect("Failed to write app.py");
 
     // initialize git
     let mut git = Command::new("git");

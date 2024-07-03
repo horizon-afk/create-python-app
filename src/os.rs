@@ -3,7 +3,7 @@ use std::fs;
 use std::fs::File;
 
 pub fn mkdir(folder_name: String) {
-    fs::create_dir(folder_name).expect("Error creating folder");
+    fs::create_dir(folder_name).expect("Error! " + &folder_name + "already exists");
 }
 
 pub fn mkfile(file_name: String) -> File {
