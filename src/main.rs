@@ -25,8 +25,7 @@ fn main() {
     // changing current working directory to the wrokspace
     os::cwd(dir_name.clone());
 
-    // creating app.py, .gitignore, requirements.txt
-    os::mkfile(String::from("app.py"));
+    // creating .gitignore, requirements.txt
     os::mkfile(String::from(".gitignore"));
     os::mkfile(String::from("requirements.txt"));
 
