@@ -32,7 +32,7 @@ fn main() {
     // creating the virtual environment
     let mut venv = Command::new("python");
     venv.args(["-m", "virtualenv", ".venv"])
-        .spawn()
+        .output()
         .expect("Could not create venv. Download virtualenv and try again.");
 
     // creating app.py
@@ -44,7 +44,7 @@ fn main() {
     // initialize git
     let mut git = Command::new("git");
     git.args(["init"])
-        .spawn()
+        .output()
         .expect("Could not git init. Download git and try again.");
 
     // flask workspace
